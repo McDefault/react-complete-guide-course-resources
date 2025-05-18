@@ -3,12 +3,14 @@ import Header from './components/Header/Header.jsx';
 import CoreConcept from "./components/CoreConcepts.jsx";
 import TabButton from "./components/TabButton";
 
-function handleSelectClick(selectedButton) {
-    // button.children  => 'components', 'jsx', 'props', 'state'
-    console.log(selectedButton)
-}
 
 function App() {
+
+    function handleSelectClick(selectedButton) {
+        // button.children  => 'components', 'jsx', 'props', 'state'
+        console.log(selectedButton)
+    }
+
     return (
         <div>
             <Header/>
