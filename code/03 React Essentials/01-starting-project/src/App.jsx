@@ -5,7 +5,7 @@ import TabButton from "./components/TabButton";
 import {useState} from "react";
 
 function App() {
-    const tabContent = 'components';
+    const tabContent = null;
 
     const [
         selectedTopic,   // Current state value
@@ -43,18 +43,24 @@ function App() {
                         <TabButton onClick={() => handleSelectClick('props')}>Props</TabButton>
                         <TabButton onClick={() => handleSelectClick('state')}>State</TabButton>
                     </menu>
-                    <div id="tab-content">
-                        <h3>{EXAMPLES[selectedTopic].title}</h3>
-                        <p>
-                            {EXAMPLES[selectedTopic].description}
-                        </p>
-                        <pre>
-                            <code>
-                                {EXAMPLES[selectedTopic].code}
-                            </code>
-                        </pre>
-                    </div>
-                    {selectedTopic}
+                    {!selectedTopic && (
+                        <p>Please select a topic.</p>
+                    )}
+                    {selectedTopic ? (
+                        <div id="tab-content">
+                            <h3>
+                                {EXAMPLES[selectedTopic].title}
+                            </h3>
+                            <p>
+                                {EXAMPLES[selectedTopic].description}
+                            </p>
+                            <pre>
+                                <code>
+                                    {EXAMPLES[selectedTopic].code}
+                                </code>
+                            </pre>
+                        </div>
+                    ) : null}
                 </section>
             </main>
         </div>
