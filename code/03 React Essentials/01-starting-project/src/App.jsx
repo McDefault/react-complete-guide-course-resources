@@ -8,7 +8,7 @@ function App() {
     const tabContent = null;
 
     const [
-        selectedTopic,   // Current state value
+        selectedTopic,         // Current state value
         setSelectedTopic       // Function to update statue value, re-execute component
     ] = useState(tabContent);  // Initial state value
 
@@ -16,6 +16,26 @@ function App() {
         // button.children  => 'components', 'jsx', 'props', 'state'
         setSelectedTopic(selectedButton);
         console.log(selectedTopic)
+    }
+
+    let tabHTMLContent = <p>Please select a topic.</p>;
+
+    if (selectedTopic) {
+        tabHTMLContent = (
+            <div id="tab-content">
+                <h3>
+                    {EXAMPLES[selectedTopic].title}
+                </h3>
+                <p>
+                    {EXAMPLES[selectedTopic].description}
+                </p>
+                <pre>
+                    <code>
+                        {EXAMPLES[selectedTopic].code}
+                    </code>
+                </pre>
+            </div>
+        );
     }
 
     return (
@@ -43,24 +63,7 @@ function App() {
                         <TabButton onClick={() => handleSelectClick('props')}>Props</TabButton>
                         <TabButton onClick={() => handleSelectClick('state')}>State</TabButton>
                     </menu>
-                    {!selectedTopic && (
-                        <p>Please select a topic.</p>
-                    )}
-                    {selectedTopic ? (
-                        <div id="tab-content">
-                            <h3>
-                                {EXAMPLES[selectedTopic].title}
-                            </h3>
-                            <p>
-                                {EXAMPLES[selectedTopic].description}
-                            </p>
-                            <pre>
-                                <code>
-                                    {EXAMPLES[selectedTopic].code}
-                                </code>
-                            </pre>
-                        </div>
-                    ) : null}
+                    {tabHTMLContent}
                 </section>
             </main>
         </div>
