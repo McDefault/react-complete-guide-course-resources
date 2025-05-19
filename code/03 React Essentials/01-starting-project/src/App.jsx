@@ -2,13 +2,20 @@ import {CORE_CONCEPTS} from './data.js';
 import Header from './components/Header/Header.jsx';
 import CoreConcept from "./components/CoreConcepts.jsx";
 import TabButton from "./components/TabButton";
-
+import {useState} from "react";
 
 function App() {
+    const tabContent = 'Please click a button.'
+
+    const [
+        selectedTopic,   // Current state value
+        setSelectedTopic       // Function to update statue value, re-execute component
+    ] = useState(tabContent);  // Initial state value
 
     function handleSelectClick(selectedButton) {
         // button.children  => 'components', 'jsx', 'props', 'state'
-        console.log(selectedButton)
+        setSelectedTopic(selectedButton);
+        console.log(selectedTopic)
     }
 
     return (
@@ -36,8 +43,8 @@ function App() {
                         <TabButton onClick={() => handleSelectClick('props')}>Props</TabButton>
                         <TabButton onClick={() => handleSelectClick('state')}>State</TabButton>
                     </menu>
+                    {selectedTopic}
                 </section>
-                Dynamic Content
             </main>
         </div>
     );
