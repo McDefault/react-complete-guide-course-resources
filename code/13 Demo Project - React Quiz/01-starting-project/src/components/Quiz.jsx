@@ -35,6 +35,7 @@ export default function Quiz() {
         <div id={"quiz"}>
             <div id={"question"}>
                 <QuestionTimer
+                    key={activeQuestionIndex} //force component rerender with key property and updating state variable
                     timeout={10000}
                     onTimeout={handelSkipAnswer}
                 ></QuestionTimer>
