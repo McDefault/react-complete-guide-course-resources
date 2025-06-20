@@ -5,7 +5,7 @@ export default function QuestionTimer({timeout, onTimeout}) {
 
     useEffect(() => {
         setTimeout(onTimeout, timeout);
-    }, [timeout, onTimeout]); //re-execute if references change
+    }, [timeout, onTimeout]); //re-execute if references change (Props and States)
 
     useEffect(() => {
         setInterval(() => {
@@ -14,6 +14,6 @@ export default function QuestionTimer({timeout, onTimeout}) {
     }, []);
 
     return (
-        <progress id={"question-time"}></progress>
+        <progress id={"question-time"} max={timeout} value={remainingTime}></progress>
     )
 }
