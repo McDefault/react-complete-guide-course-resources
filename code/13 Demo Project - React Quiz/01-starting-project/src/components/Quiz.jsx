@@ -2,22 +2,36 @@ import {useCallback, useState} from "react";
 
 import QUESTIONS from '../questions.js';
 import completeImg from '../assets/quiz-complete.png';
-import QuestionTimer from "./QuestionTimer.jsx";
+import Question from "./Question.jsx";
 
 export default function Quiz() {
+    const [answerState, setAnswerState] = useState('')
     const [userAnswers, setUserAnswers] = useState([]);
     //derived state - computed value
-    const activeQuestionIndex = userAnswers.length;
+    const activeQuestionIndex = answerState === '' ? userAnswers.length : userAnswers.length - 1;
     const quizIsCompleted = activeQuestionIndex === QUESTIONS.length; //derived state
 
     const handleClickAnswer = useCallback(function handleClickAnswer(answer) { // useCallback hook to not recreate function on component update
+        setAnswerState('answered')
         // use implicit parameter (previousUserAnswers) from the set method to inject old data from the state handler and append new data to it
         setUserAnswers((previousUserAnswers) => [...previousUserAnswers, answer]);
 
         // setUserAnswers((previousUserAnswers) => {
         //     return [...previousUserAnswers, answer]
         // });
-    }, []);
+
+        setTimeout(() => {
+            if (answer === QUESTIONS[activeQuestionIndex].answers[0]) {
+                setAnswerState('correct');
+            } else {
+                setAnswerState('wrong');
+            }
+
+            setTimeout(() => {
+                setAnswerState('');
+            }, 2000);
+        }, 1000);
+    }, [activeQuestionIndex]); // handleClickAnswer should be recreated with new value because we don't want to use outdated activeQuestionIndex in the body
 
     const handelSkipAnswer = useCallback(() => handleClickAnswer(null), [handleClickAnswer]);
 
@@ -28,26 +42,18 @@ export default function Quiz() {
         </div>;
     }
 
-    const shuffledAnswers = [...QUESTIONS[activeQuestionIndex].answers]; //create new array reference copy in memory from original reference
-    shuffledAnswers.sort(() => Math.random() - 0.5); //sort alters original reference
 
     return (
         <div id={"quiz"}>
-            <div id={"question"}>
-                <QuestionTimer
-                    key={activeQuestionIndex} //force component rerender with key property and updating state variable
-                    timeout={10000}
-                    onTimeout={handelSkipAnswer}
-                ></QuestionTimer>
-                <h2>
-                    {QUESTIONS[activeQuestionIndex].text}
-                </h2>
-                <ul id={"answers"}>
-                    {shuffledAnswers.map((answer) => (<li key={answer} className={"answer"}>
-                        <button onClick={() => handleClickAnswer(answer)}>{answer}</button>
-                    </li>))}
-                </ul>
-            </div>
+            <Question
+                key={activeQuestionIndex} //force component rerender with key property and updating state variable
+                QuestionText={QUESTIONS[activeQuestionIndex].text}
+                answers={QUESTIONS[activeQuestionIndex].answers}
+                answerState={answerState}
+                selectedAnswer={userAnswers[userAnswers.length - 1]}
+                onSelectAnswer={handleClickAnswer}
+                onSkipAnswer={handelSkipAnswer}
+            />
         </div>
     )
 }
