@@ -11,6 +11,18 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
         }
     );
 
+    let timer = 10000;
+    const timerOnSelectedAnswer = 1000;
+    const timerToNextQuestion = 2000;
+
+    if (answer.selectedAnswer) {
+        timer = timerOnSelectedAnswer;
+    }
+
+    if (answer.isCorrect !== null) {
+        timer = timerToNextQuestion;
+    }
+
     function handelSelectAnswer(answer) {
         setAnswer({
             selectedAnswer: answer,
@@ -25,8 +37,8 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
 
             setTimeout(() => {
                 onSelectAnswer(answer);
-            },2000)
-        }, 1000)
+            },timerToNextQuestion)
+        }, timerOnSelectedAnswer)
     }
 
     let answerState = '';
@@ -40,8 +52,10 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
     return (
         <div id={"question"}>
             <QuestionTimer
-                timeout={10000}
-                onTimeout={onSkipAnswer}
+                key={timer} //rerender component when timer value changes
+                timeout={timer}
+                onTimeout={answer.selectedAnswer === '' ? onSkipAnswer : null} //only use when no answer
+                mode={answerState}
             />
             <h2>
                 {QUESTIONS[index].text}
