@@ -1,7 +1,7 @@
 import logImg from '../assets/quiz-logo.png';
-import {Link} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
-import classes from './MainNavigation.module.css'
+import classes from './Header.module.css'
 
 export default function Header() {
     return (
@@ -13,14 +13,21 @@ export default function Header() {
             <nav>
                 <ul className={classes.list}>
                     <li>
-                        <Link to="/">
+                        <NavLink
+                            to="/"
+                            className={({isActive}) => isActive ? classes.active : undefined}
+                            end
+                        >
                             Home
-                        </Link>
+                        </NavLink>
                     </li>
                     <li>
-                        <Link to="quiz">
+                        <NavLink
+                            to="quiz"
+                            className={({isActive}) => isActive ? classes.active : undefined}
+                        >
                             Quiz
-                        </Link>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
