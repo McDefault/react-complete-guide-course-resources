@@ -31,7 +31,7 @@ export default function Header() {
                     </li>
                     <li>
                         <NavLink
-                            to="auth"
+                            to="auth?mode=login"
                             className={({isActive}) => isActive ? classes.active : undefined}
                         >
                             Login
