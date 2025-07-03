@@ -1,5 +1,6 @@
 import quizCompleteImg from '../assets/quiz-complete.png';
 import QUESTIONS from '../questions.js';
+import {Link} from "react-router-dom";
 
 export default function Summary({userAnswers}) {
     const skippedUserAnswers = userAnswers.filter(answer => answer === null);
@@ -56,6 +57,9 @@ export default function Summary({userAnswers}) {
                     )
                 })}
             </ol>
+            <Link to={".."}>
+                Back to home
+            </Link>
         </div>
     )
 }
