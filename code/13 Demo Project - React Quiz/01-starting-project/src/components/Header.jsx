@@ -26,7 +26,7 @@ export default function Header() {
                             to="quiz"
                             className={({isActive}) => isActive ? classes.active : undefined}
                         >
-                            Quiz
+                            Quizzes
                         </NavLink>
                     </li>
                     <li>

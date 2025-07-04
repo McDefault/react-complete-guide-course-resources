@@ -9,6 +9,8 @@ import EventsPage, {EventsPageLoader} from "./components/Events.jsx";
 import EventDetailPage from "./components/EventDetail.jsx";
 import NewEventPage from "./components/NewEvent.jsx";
 import EditEventPage from "./components/EditEvent.jsx";
+import QuizzesRootLayout from "./components/QuizzesRoot.jsx";
+import QuizzesPage, {QuizzesPageLoader} from "./components/Quizzes.jsx";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -18,7 +20,7 @@ const router = createBrowserRouter([
         errorElement: <Error/>,
         children: [
             {index: true, element: <Dashboard/>}, //path: ""
-            {path: "quiz", element: <Quiz/>},
+            // {path: "quiz", element: <Quiz/>},
             {path: "auth", element: <AuthenticationPage/>},
             {
                 path: 'events',
@@ -32,6 +34,17 @@ const router = createBrowserRouter([
                     {path: ':eventId', element: <EventDetailPage/>},
                     {path: 'new', element: <NewEventPage/>},
                     {path: ':eventId/edit', element: <EditEventPage/>},
+                ],
+            },
+            {
+                path: 'quiz',
+                element: <QuizzesRootLayout/>,
+                children: [
+                    {
+                        index: true,
+                        element: <QuizzesPage/>,
+                        loader: QuizzesPageLoader
+                    },
                 ],
             },
         ]
