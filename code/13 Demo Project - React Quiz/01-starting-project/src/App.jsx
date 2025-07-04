@@ -6,7 +6,7 @@ import Error from "./components/Error.jsx";
 import AuthenticationPage from "./components/Authentication.jsx";
 import EventsRootLayout from "./components/EventsRoot.jsx";
 import EventsPage, {EventsPageLoader} from "./components/Events.jsx";
-import EventDetailPage from "./components/EventDetail.jsx";
+import EventDetailPage, {EventDetailsLoader} from "./components/EventDetail.jsx";
 import NewEventPage from "./components/NewEvent.jsx";
 import EditEventPage from "./components/EditEvent.jsx";
 import QuizzesRootLayout from "./components/QuizzesRoot.jsx";
@@ -31,7 +31,7 @@ const router = createBrowserRouter([
                         element: <EventsPage/>,
                         loader: EventsPageLoader
                     },
-                    {path: ':eventId', element: <EventDetailPage/>},
+                    {path: ':eventId', element: <EventDetailPage/>, loader: EventDetailsLoader},
                     {path: 'new', element: <NewEventPage/>},
                     {path: ':eventId/edit', element: <EditEventPage/>},
                 ],
