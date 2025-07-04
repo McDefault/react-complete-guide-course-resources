@@ -1,10 +1,14 @@
 import {useCallback, useState} from "react";
 
-import QUESTIONS from '../questions.js';
+// import QUESTIONS from '../questions.js';
 import Question from "./Question.jsx";
 import Summary from "./Summary.jsx";
+import {useRouteLoaderData} from "react-router-dom";
 
 export default function Quiz() {
+    const loaderData = useRouteLoaderData ('quiz-detail');
+    const QUESTIONS = loaderData.quiz.questions;
+
     const [userAnswers, setUserAnswers] = useState([]);
     //derived state - computed value
     const activeQuestionIndex = userAnswers.length;
@@ -33,6 +37,7 @@ export default function Quiz() {
                 index={activeQuestionIndex} //key is reserved for react
                 onSelectAnswer={handleClickAnswer}
                 onSkipAnswer={handelSkipAnswer}
+                QUESTIONS={QUESTIONS}
             />
         </div>
     )

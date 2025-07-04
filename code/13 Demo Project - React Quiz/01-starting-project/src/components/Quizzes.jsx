@@ -4,7 +4,6 @@ import QuizzesList from "./QuizzesList.jsx";
 function QuizzesPage() {
     const loaderData = useLoaderData();
     const fetchedQuizzes = loaderData.quizzes;
-    console.log(fetchedQuizzes);
     return (
         <QuizzesList quizzes={fetchedQuizzes}/>
     );
