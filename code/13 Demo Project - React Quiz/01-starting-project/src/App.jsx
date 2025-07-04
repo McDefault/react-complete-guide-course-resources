@@ -5,7 +5,7 @@ import RouterRoot from "./components/RouterRoot.jsx";
 import Error from "./components/Error.jsx";
 import AuthenticationPage from "./components/Authentication.jsx";
 import EventsRootLayout from "./components/EventsRoot.jsx";
-import EventsPage from "./components/Events.jsx";
+import EventsPage, {EventsPageLoader} from "./components/Events.jsx";
 import EventDetailPage from "./components/EventDetail.jsx";
 import NewEventPage from "./components/NewEvent.jsx";
 import EditEventPage from "./components/EditEvent.jsx";
@@ -19,15 +19,19 @@ const router = createBrowserRouter([
         children: [
             {index: true, element: <Dashboard/>}, //path: ""
             {path: "quiz", element: <Quiz/>},
-            {path: "auth", element: <AuthenticationPage/> },
+            {path: "auth", element: <AuthenticationPage/>},
             {
                 path: 'events',
-                element: <EventsRootLayout />,
+                element: <EventsRootLayout/>,
                 children: [
-                    { index: true, element: <EventsPage /> },
-                    { path: ':eventId', element: <EventDetailPage /> },
-                    { path: 'new', element: <NewEventPage /> },
-                    { path: ':eventId/edit', element: <EditEventPage /> },
+                    {
+                        index: true,
+                        element: <EventsPage/>,
+                        loader: EventsPageLoader
+                    },
+                    {path: ':eventId', element: <EventDetailPage/>},
+                    {path: 'new', element: <NewEventPage/>},
+                    {path: ':eventId/edit', element: <EditEventPage/>},
                 ],
             },
         ]
