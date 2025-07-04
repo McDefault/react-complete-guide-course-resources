@@ -1,13 +1,24 @@
 const fs = require('node:fs/promises');
 
-async function readData() {
+async function readEventsData() {
   const data = await fs.readFile('events.json', 'utf8');
   return JSON.parse(data);
 }
 
-async function writeData(data) {
+async function writeEventsData(data) {
   await fs.writeFile('events.json', JSON.stringify(data));
 }
 
-exports.readData = readData;
-exports.writeData = writeData;
+async function readQuizData() {
+  const data = await fs.readFile('quizzes.json', 'utf8');
+  return JSON.parse(data);
+}
+
+async function writeQuizData(data) {
+  await fs.writeFile('quizzes.json', JSON.stringify(data));
+}
+
+exports.readEventsData = readEventsData;
+exports.writeQuizData = writeEventsData;
+exports.readQuizData = readQuizData;
+exports.writeQuizData = writeQuizData;
