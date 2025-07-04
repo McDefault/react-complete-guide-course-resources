@@ -1,4 +1,4 @@
-import {useRouteLoaderData} from 'react-router-dom';
+import {redirect, useRouteLoaderData} from 'react-router-dom';
 import QuizItem from "./QuizItem.jsx";
 
 function QuizDetailPage() {
@@ -19,4 +19,16 @@ export async function QuizDetailsLoader({params}) {
     } else {
         return response;
     }
+}
+
+export async function QuizDeleteAction({params, request}) {
+    const id = params.quizId;
+    const response = await fetch('http://localhost:8080/quizzes/' + id, {
+        method: request.method,
+    });
+
+    if (!response.ok) {
+        throw new Response(JSON.stringify({message: 'Could not delete quiz.'}), {status: 500}); // Fallback to errorElement
+    }
+    return redirect('/quiz');
 }
