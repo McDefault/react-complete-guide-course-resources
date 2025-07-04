@@ -16,7 +16,7 @@ export async function EventsPageLoader() {
     const response = await fetch('http://localhost:8080/events');
 
     if (!response.ok) {
-        throw {message: 'No events found.'}; // Fallback to errorElement
+        throw new Response(JSON.stringify({message: 'No events found.'}), {status: 500}); // Fallback to errorElement
     } else {
         return response;
     }
