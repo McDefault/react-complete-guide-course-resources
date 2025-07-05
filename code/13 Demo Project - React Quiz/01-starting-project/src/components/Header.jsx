@@ -2,6 +2,7 @@ import logImg from '../assets/quiz-logo.png';
 import {NavLink} from 'react-router-dom';
 
 import classes from './Header.module.css'
+import NewsletterSignup from "./NewsletterSignup.jsx";
 
 export default function Header() {
     return (
@@ -39,11 +40,22 @@ export default function Header() {
                     </li>
                     <li>
                         <NavLink
+                            to="newsletter"
+                            className={({isActive}) => isActive ? classes.active : undefined}
+                        >
+                            Newsletter
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
                             to="auth?mode=login"
                             className={({isActive}) => isActive ? classes.active : undefined}
                         >
                             Login
                         </NavLink>
+                    </li>
+                    <li>
+                        <NewsletterSignup/>
                     </li>
                 </ul>
             </nav>

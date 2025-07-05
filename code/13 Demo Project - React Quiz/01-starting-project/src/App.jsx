@@ -16,6 +16,7 @@ import EditQuizPage from "./components/EditQuiz.jsx";
 import NewQuizPage from "./components/NewQuiz.jsx";
 import {NewAndEditEventAction} from "./components/EventForm.jsx";
 import {NewEditQuizAction} from "./components/QuizForm.jsx";
+import NewsletterPage, {newsletterAction} from "./components/Newsletter.jsx";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -95,6 +96,11 @@ const router = createBrowserRouter([
                     },
                 ],
             },
+            {
+                path: 'newsletter',
+                element: <NewsletterPage/>,
+                action: newsletterAction,
+            }
         ]
     },
 ])
