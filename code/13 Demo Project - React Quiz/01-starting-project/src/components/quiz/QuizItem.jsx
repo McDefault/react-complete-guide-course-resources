@@ -1,4 +1,4 @@
-import classes from './EventItem.module.css';
+import classes from '../event/EventItem.module.css';
 import {Link, useSubmit} from "react-router-dom";
 
 function QuizItem({quiz}) {

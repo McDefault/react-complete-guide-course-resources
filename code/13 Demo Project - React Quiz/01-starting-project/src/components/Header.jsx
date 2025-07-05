@@ -2,7 +2,7 @@ import logImg from '../assets/quiz-logo.png';
 import {NavLink} from 'react-router-dom';
 
 import classes from './Header.module.css'
-import NewsletterSignup from "./NewsletterSignup.jsx";
+import NewsletterSignup from "./newsletter/NewsletterSignup.jsx";
 
 export default function Header() {
     return (

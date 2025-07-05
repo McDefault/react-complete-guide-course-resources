@@ -1,6 +1,6 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 
-import classes from './EventForm.module.css';
+import classes from '../event/EventForm.module.css';
 
 function QuizForm({ method, quiz }) {
   const navigate = useNavigate();

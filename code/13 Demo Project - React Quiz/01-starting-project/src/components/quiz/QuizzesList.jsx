@@ -1,4 +1,4 @@
-import classes from './EventsList.module.css';
+import classes from '../event/EventsList.module.css';
 import {Link} from "react-router-dom";
 
 function QuizzesList({quizzes}) {
