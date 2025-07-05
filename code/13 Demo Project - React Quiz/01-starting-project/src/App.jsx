@@ -7,13 +7,14 @@ import AuthenticationPage from "./components/Authentication.jsx";
 import EventsRootLayout from "./components/EventsRoot.jsx";
 import EventsPage, {EventsPageLoader} from "./components/Events.jsx";
 import EventDetailPage, {EventDetailsLoader, EventsDeleteAction} from "./components/EventDetail.jsx";
-import NewEventPage, {NewEventAction} from "./components/NewEvent.jsx";
+import NewEventPage from "./components/NewEvent.jsx";
 import EditEventPage from "./components/EditEvent.jsx";
 import QuizzesRootLayout from "./components/QuizzesRoot.jsx";
 import QuizzesPage, {QuizzesPageLoader} from "./components/Quizzes.jsx";
 import QuizDetailPage, {QuizDeleteAction, QuizDetailsLoader} from "./components/QuizDetail.jsx";
 import EditQuizPage from "./components/EditQuiz.jsx";
 import NewQuizPage, {NewQuizAction} from "./components/NewQuiz.jsx";
+import {NewAndEditEventAction} from "./components/EventForm.jsx";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -45,13 +46,17 @@ const router = createBrowserRouter([
                                 action: EventsDeleteAction
 
                             },
-                            {path: 'edit', element: <EditEventPage/>},
+                            {
+                                path: 'edit',
+                                element: <EditEventPage/>,
+                                action: NewAndEditEventAction
+                            },
                         ]
                     },
                     {
                         path: 'new',
                         element: <NewEventPage/>,
-                        action: NewEventAction
+                        action: NewAndEditEventAction
                     },
                 ],
             },
