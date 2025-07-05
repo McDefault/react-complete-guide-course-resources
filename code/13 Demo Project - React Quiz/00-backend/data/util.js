@@ -19,6 +19,6 @@ async function writeQuizData(data) {
 }
 
 exports.readEventsData = readEventsData;
-exports.writeQuizData = writeEventsData;
+exports.writeEventsData = writeEventsData;
 exports.readQuizData = readQuizData;
 exports.writeQuizData = writeQuizData;
