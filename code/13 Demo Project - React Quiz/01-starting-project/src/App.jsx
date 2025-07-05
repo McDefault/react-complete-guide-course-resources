@@ -13,8 +13,9 @@ import QuizzesRootLayout from "./components/QuizzesRoot.jsx";
 import QuizzesPage, {QuizzesPageLoader} from "./components/Quizzes.jsx";
 import QuizDetailPage, {QuizDeleteAction, QuizDetailsLoader} from "./components/QuizDetail.jsx";
 import EditQuizPage from "./components/EditQuiz.jsx";
-import NewQuizPage, {NewQuizAction} from "./components/NewQuiz.jsx";
+import NewQuizPage from "./components/NewQuiz.jsx";
 import {NewAndEditEventAction} from "./components/EventForm.jsx";
+import {NewEditQuizAction} from "./components/QuizForm.jsx";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -80,13 +81,17 @@ const router = createBrowserRouter([
                                 action: QuizDeleteAction
                             },
                             {path: 'start', element: <Quiz/>},
-                            {path: 'edit', element: <EditQuizPage/>},
+                            {
+                                path: 'edit',
+                                element: <EditQuizPage/>,
+                                action: NewEditQuizAction
+                            },
                         ]
                     },
                     {
                         path: 'new',
                         element: <NewQuizPage/>,
-                        action: NewQuizAction
+                        action: NewEditQuizAction
                     },
                 ],
             },
