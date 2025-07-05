@@ -45,6 +45,10 @@ export async function NewQuizAction({request}) {
         body: JSON.stringify(quizData),
     });
 
+    if (response.status === 422) {
+        return response;
+    }
+
     if (!response.ok) {
         throw new Response(JSON.stringify({message: 'Could not save quiz.'}), {
             status: 500,
