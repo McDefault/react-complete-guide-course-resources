@@ -3,7 +3,7 @@ import {createBrowserRouter, RouterProvider} from "react-router-dom";
 import Dashboard from "./components/Dashboard.jsx";
 import RouterRoot from "./components/RouterRoot.jsx";
 import Error from "./components/Error.jsx";
-import AuthenticationPage from "./components/auth/Authentication.jsx";
+import AuthenticationPage, {authAction} from "./components/auth/Authentication.jsx";
 import EventsRootLayout from "./components/event/EventsRoot.jsx";
 import EventsPage, {EventsPageLoader} from "./components/event/Events.jsx";
 import EventDetailPage, {EventDetailsLoader, EventsDeleteAction} from "./components/event/EventDetail.jsx";
@@ -26,7 +26,10 @@ const router = createBrowserRouter([
         errorElement: <Error/>,
         children: [
             {index: true, element: <Dashboard/>}, //path: ""
-            {path: "auth", element: <AuthenticationPage/>},
+            {
+                path: "auth", element: <AuthenticationPage/>,
+                action: authAction
+            },
             {
                 path: 'events',
                 element: <EventsRootLayout/>,
