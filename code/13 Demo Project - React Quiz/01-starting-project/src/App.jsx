@@ -17,6 +17,7 @@ import NewQuizPage from "./components/quiz/NewQuiz.jsx";
 import {NewAndEditEventAction} from "./components/event/EventForm.jsx";
 import {NewEditQuizAction} from "./components/quiz/QuizForm.jsx";
 import NewsletterPage, {newsletterAction} from "./components/newsletter/Newsletter.jsx";
+import {logoutAction} from "./components/auth/Logout.jsx";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -102,6 +103,10 @@ const router = createBrowserRouter([
                 path: 'newsletter',
                 element: <NewsletterPage/>,
                 action: newsletterAction,
+            },
+            {
+                path: "logout",
+                action: logoutAction
             }
         ]
     },

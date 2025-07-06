@@ -1,5 +1,5 @@
 import logImg from '../assets/quiz-logo.png';
-import {NavLink} from 'react-router-dom';
+import {Form, NavLink} from 'react-router-dom';
 
 import classes from './Header.module.css'
 import NewsletterSignup from "./newsletter/NewsletterSignup.jsx";
@@ -56,6 +56,11 @@ export default function Header() {
                     </li>
                     <li>
                         <NewsletterSignup/>
+                    </li>
+                    <li>
+                        <Form action={"/logout"} method={"POST"}>
+                            <button>Logout</button>
+                        </Form>
                     </li>
                 </ul>
             </nav>
