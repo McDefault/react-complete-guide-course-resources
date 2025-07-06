@@ -1,10 +1,14 @@
-import { Outlet } from 'react-router-dom';
+import {Outlet} from 'react-router-dom';
+import QuizzesNavigation from "./QuizzesNavigation.jsx";
 
 
 function QuizzesRootLayout() {
-  return (
-      <Outlet />
-  );
+    return (
+        <>
+            <QuizzesNavigation/>
+            <Outlet/>
+        </>
+    );
 }
 
 export default QuizzesRootLayout;
