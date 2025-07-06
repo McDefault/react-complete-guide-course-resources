@@ -1,6 +1,7 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 
 import classes from '../event/EventForm.module.css';
+import {getAuthToken} from "../../util/auth.js";
 
 function QuizForm({ method, quiz }) {
   const navigate = useNavigate();
@@ -120,6 +121,8 @@ export async function NewEditQuizAction({request, params}) {
         method: method,
         headers: {
             'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getAuthToken(),
+
         },
         body: JSON.stringify(quizData),
     });

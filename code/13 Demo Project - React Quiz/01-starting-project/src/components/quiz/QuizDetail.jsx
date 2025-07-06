@@ -1,5 +1,6 @@
 import {redirect, useRouteLoaderData} from 'react-router-dom';
 import QuizItem from "./QuizItem.jsx";
+import {getAuthToken} from "../../util/auth.js";
 
 function QuizDetailPage() {
     const loaderData = useRouteLoaderData('quiz-detail');
@@ -25,6 +26,11 @@ export async function QuizDeleteAction({params, request}) {
     const id = params.quizId;
     const response = await fetch('http://localhost:8080/quizzes/' + id, {
         method: request.method,
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + getAuthToken()
+
+        },
     });
 
     if (!response.ok) {
