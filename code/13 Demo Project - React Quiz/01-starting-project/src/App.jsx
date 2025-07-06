@@ -18,7 +18,7 @@ import {NewAndEditEventAction} from "./components/event/EventForm.jsx";
 import {NewEditQuizAction} from "./components/quiz/QuizForm.jsx";
 import NewsletterPage, {newsletterAction} from "./components/newsletter/Newsletter.jsx";
 import {logoutAction} from "./components/auth/Logout.jsx";
-import {tokenLoader} from "./util/auth.js";
+import {checkAuthLoader, tokenLoader} from "./util/auth.js";
 
 // Routing paths
 const router = createBrowserRouter([
@@ -57,14 +57,16 @@ const router = createBrowserRouter([
                             {
                                 path: 'edit',
                                 element: <EditEventPage/>,
-                                action: NewAndEditEventAction
+                                action: NewAndEditEventAction,
+                                loader: checkAuthLoader
                             },
                         ]
                     },
                     {
                         path: 'new',
                         element: <NewEventPage/>,
-                        action: NewAndEditEventAction
+                        action: NewAndEditEventAction,
+                        loader: checkAuthLoader
                     },
                 ],
             },
@@ -91,14 +93,16 @@ const router = createBrowserRouter([
                             {
                                 path: 'edit',
                                 element: <EditQuizPage/>,
-                                action: NewEditQuizAction
+                                action: NewEditQuizAction,
+                                loader: checkAuthLoader
                             },
                         ]
                     },
                     {
                         path: 'new',
                         element: <NewQuizPage/>,
-                        action: NewEditQuizAction
+                        action: NewEditQuizAction,
+                        loader: checkAuthLoader
                     },
                 ],
             },
