@@ -1,8 +1,9 @@
 import classes from '../event/EventItem.module.css';
-import {Link, useSubmit} from "react-router-dom";
+import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
 
 function QuizItem({quiz}) {
     const submit = useSubmit();
+    const {token} = useRouteLoaderData("root");
 
     function startDeleteHandler() {
         const proceed = window.confirm('Are you sure you want to delete this quiz?');
@@ -16,11 +17,15 @@ function QuizItem({quiz}) {
         <article className={classes.event}>
             <h1>{quiz.title}</h1>
             <p>{quiz.description}</p>
-            <menu className={classes.actions}>
-                <Link to="start">Start</Link>
+            <Link to="start">Start</Link>
+            {token && <menu className={classes.actions}>
+
                 <Link to="edit">Edit</Link>
-                <button onClick={startDeleteHandler}>Delete</button>
-            </menu>
+                <button onClick={startDeleteHandler}>
+                    Delete
+                </button>
+
+            </menu>}
         </article>
     );
 }

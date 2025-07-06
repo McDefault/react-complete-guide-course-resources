@@ -9,3 +9,9 @@ export function setAuthToken(token = null) {
         localStorage.setItem('token', token);
     }
 }
+
+export function tokenLoader() {
+    return {
+        token: getAuthToken()
+    };
+}
