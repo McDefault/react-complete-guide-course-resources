@@ -1,6 +1,6 @@
 import AuthForm from './AuthForm.jsx';
 import {redirect} from "react-router-dom";
-import {setAuthToken} from "../../util/auth.js";
+import {setAuthExpiration, setAuthToken} from "../../util/auth.js";
 
 function AuthenticationPage() {
     return <AuthForm/>;
@@ -47,7 +47,11 @@ export async function authAction({request}) {
     const resData = await response.json();
     const token = resData.token;
 
+    const expires = new Date();
+    expires.setHours(expires.getHours() + 1);
+
     setAuthToken(token);
+    setAuthExpiration(expires.toISOString());
 
     return redirect('/');
 }
