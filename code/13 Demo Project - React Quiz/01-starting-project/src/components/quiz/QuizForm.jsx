@@ -48,7 +48,7 @@ function QuizForm({ method, quiz }) {
                         <input
                             id={`question-${index}`}
                             type="text"
-                            name={`questions[${index}].text`}
+                            name={`questions-${index}-text`}
                             required
                             defaultValue={question.text}
                         />
@@ -59,7 +59,7 @@ function QuizForm({ method, quiz }) {
                             <input
                                 id={`question-${index}-answer-${answerIndex}`}
                                 type="text"
-                                name={`questions[${index}].answers[${answerIndex}]`}
+                                name={`questions-${index}-answers-${answerIndex}`}
                                 required
                                 defaultValue={answer}
                             />
@@ -89,25 +89,25 @@ export async function NewEditQuizAction({request, params}) {
         questions: [
             {
                 id: 'q1',
-                text: 'Which of the following definitions best describes React.js?',
+                text: data.get('questions-0-text'),
                 answers: [
-                    'A library to build user interfaces with help of declarative code.',
-                    'A library for managing state in web applications.',
-                    'A framework to build user interfaces with help of imperative code.',
-                    'A library used for building mobile applications only.',
+                    data.get('questions-0-answers-0'),
+                    data.get('questions-0-answers-1'),
+                    data.get('questions-0-answers-2'),
+                    data.get('questions-0-answers-3'),
                 ],
             },
             {
                 id: 'q2',
-                text: 'What purpose do React hooks serve?',
+                text: data.get('questions-1-text'),
                 answers: [
-                    'Enabling the use of state and other React features in functional components.',
-                    'Creating responsive layouts in React applications.',
-                    'Handling errors within the application.',
-                    'Part of the Redux library for managing global state.',
+                    data.get('questions-1-answers-0'),
+                    data.get('questions-1-answers-1'),
+                    data.get('questions-1-answers-2'),
+                    data.get('questions-1-answers-3'),
                 ],
             }
-        ],  //todo question fields
+        ],
     };
 
     let url = 'http://localhost:8080/quizzes';
