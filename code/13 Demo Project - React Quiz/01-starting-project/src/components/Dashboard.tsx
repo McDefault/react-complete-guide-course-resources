@@ -1,5 +1,5 @@
 import {Link} from "react-router-dom";
-import {getAuthToken} from "../util/auth.js";
+import {getAuthToken} from "../util/auth.ts";
 
 export default function Dashboard() {
     return (

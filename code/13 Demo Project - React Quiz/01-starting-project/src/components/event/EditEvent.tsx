@@ -1,4 +1,4 @@
-import EventForm from "./EventForm.jsx";
+import EventForm from "./EventForm.tsx";
 import {useRouteLoaderData} from "react-router-dom";
 
 function EditEventPage() {

@@ -1,8 +1,8 @@
 import {useCallback, useState} from "react";
 
 // import QUESTIONS from '../questions.js';
-import Question from "./Question.jsx";
-import Summary from "./Summary.jsx";
+import Question from "./Question.tsx";
+import Summary from "./Summary.tsx";
 import {useRouteLoaderData} from "react-router-dom";
 
 export default function Quiz() {

@@ -1,5 +1,5 @@
-import Header from "./Header.jsx";
-import PageContent from "./PageContent.jsx";
+import Header from "./Header.tsx";
+import PageContent from "./PageContent.tsx";
 import {useRouteError} from "react-router-dom";
 
 export default function Error() {

@@ -2,7 +2,7 @@ import logImg from '../assets/quiz-logo.png';
 import {Form, NavLink, useRouteLoaderData} from 'react-router-dom';
 
 import classes from './Header.module.css'
-import NewsletterSignup from "./newsletter/NewsletterSignup.jsx";
+import NewsletterSignup from "./newsletter/NewsletterSignup.tsx";
 
 export default function Header() {
     const {token} = useRouteLoaderData("root");

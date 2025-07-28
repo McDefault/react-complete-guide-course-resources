@@ -1,7 +1,7 @@
 import {Outlet, useLoaderData, useSubmit} from "react-router-dom";
-import Header from "./Header.jsx";
+import Header from "./Header.tsx";
 import {useEffect} from "react";
-import {getTokenDuration} from "../util/auth.js";
+import {getTokenDuration} from "../util/auth.ts";
 
 export default function RouterRoot() {
     const {token} = useLoaderData();

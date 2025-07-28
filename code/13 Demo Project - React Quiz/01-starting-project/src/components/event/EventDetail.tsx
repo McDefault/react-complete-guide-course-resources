@@ -1,6 +1,6 @@
 import {redirect, useRouteLoaderData} from 'react-router-dom';
-import EventItem from "./EventItem.jsx";
-import {getAuthToken} from "../../util/auth.js";
+import EventItem from "./EventItem.tsx";
+import {getAuthToken} from "../../util/auth.ts";
 
 function EventDetailPage() {
     const loaderData = useRouteLoaderData('event-detail');

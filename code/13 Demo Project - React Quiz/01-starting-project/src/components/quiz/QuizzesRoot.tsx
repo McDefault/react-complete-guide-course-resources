@@ -1,5 +1,5 @@
 import {Outlet} from 'react-router-dom';
-import QuizzesNavigation from "./QuizzesNavigation.jsx";
+import QuizzesNavigation from "./QuizzesNavigation.tsx";
 
 
 function QuizzesRootLayout() {

@@ -1,4 +1,4 @@
-import QuizForm from "./QuizForm.jsx";
+import QuizForm from "./QuizForm.tsx";
 
 function NewQuizPage() {
     const initialQuiz = {

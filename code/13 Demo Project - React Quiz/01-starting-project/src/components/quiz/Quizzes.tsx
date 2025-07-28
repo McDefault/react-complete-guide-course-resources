@@ -1,5 +1,5 @@
 import {useLoaderData} from "react-router-dom";
-import QuizzesList from "./QuizzesList.jsx";
+import QuizzesList from "./QuizzesList.tsx";
 
 function QuizzesPage() {
     const loaderData = useLoaderData();

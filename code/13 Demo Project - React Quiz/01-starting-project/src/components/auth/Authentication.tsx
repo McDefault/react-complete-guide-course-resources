@@ -1,6 +1,6 @@
-import AuthForm from './AuthForm.jsx';
+import AuthForm from './AuthForm.tsx';
 import {redirect} from "react-router-dom";
-import {setAuthExpiration, setAuthToken} from "../../util/auth.js";
+import {setAuthExpiration, setAuthToken} from "../../util/auth.ts";
 
 function AuthenticationPage() {
     return <AuthForm/>;

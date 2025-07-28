@@ -1,4 +1,4 @@
-import EventForm from "./EventForm.jsx";
+import EventForm from "./EventForm.tsx";
 
 function NewEventPage() {
     return <EventForm method={"post"} />

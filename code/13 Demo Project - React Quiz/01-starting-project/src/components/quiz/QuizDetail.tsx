@@ -1,6 +1,6 @@
 import {redirect, useRouteLoaderData} from 'react-router-dom';
-import QuizItem from "./QuizItem.jsx";
-import {getAuthToken} from "../../util/auth.js";
+import QuizItem from "./QuizItem.tsx";
+import {getAuthToken} from "../../util/auth.ts";
 
 function QuizDetailPage() {
     const loaderData = useRouteLoaderData('quiz-detail');

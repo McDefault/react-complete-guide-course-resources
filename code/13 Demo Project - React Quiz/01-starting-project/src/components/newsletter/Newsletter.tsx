@@ -1,5 +1,5 @@
-import NewsletterSignup from './NewsletterSignup.jsx';
-import PageContent from '../PageContent.jsx';
+import NewsletterSignup from './NewsletterSignup.tsx';
+import PageContent from '../PageContent.tsx';
 
 function NewsletterPage() {
   return (

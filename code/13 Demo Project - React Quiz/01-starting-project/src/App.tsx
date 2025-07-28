@@ -1,24 +1,24 @@
-import Quiz from "./components/quiz/Quiz.jsx";
+import Quiz from "./components/quiz/Quiz.tsx";
 import {createBrowserRouter, RouterProvider} from "react-router-dom";
-import Dashboard from "./components/Dashboard.jsx";
-import RouterRoot from "./components/RouterRoot.jsx";
-import Error from "./components/Error.jsx";
-import AuthenticationPage, {authAction} from "./components/auth/Authentication.jsx";
-import EventsRootLayout from "./components/event/EventsRoot.jsx";
-import EventsPage, {EventsPageLoader} from "./components/event/Events.jsx";
-import EventDetailPage, {EventDetailsLoader, EventsDeleteAction} from "./components/event/EventDetail.jsx";
-import NewEventPage from "./components/event/NewEvent.jsx";
-import EditEventPage from "./components/event/EditEvent.jsx";
-import QuizzesRootLayout from "./components/quiz/QuizzesRoot.jsx";
-import QuizzesPage, {QuizzesPageLoader} from "./components/quiz/Quizzes.jsx";
-import QuizDetailPage, {QuizDeleteAction, QuizDetailsLoader} from "./components/quiz/QuizDetail.jsx";
-import EditQuizPage from "./components/quiz/EditQuiz.jsx";
-import NewQuizPage from "./components/quiz/NewQuiz.jsx";
-import {NewAndEditEventAction} from "./components/event/EventForm.jsx";
-import {NewEditQuizAction} from "./components/quiz/QuizForm.jsx";
-import NewsletterPage, {newsletterAction} from "./components/newsletter/Newsletter.jsx";
-import {logoutAction} from "./components/auth/Logout.jsx";
-import {checkAuthLoader, tokenLoader} from "./util/auth.js";
+import Dashboard from "./components/Dashboard.tsx";
+import RouterRoot from "./components/RouterRoot.tsx";
+import Error from "./components/Error.tsx";
+import AuthenticationPage, {authAction} from "./components/auth/Authentication.tsx";
+import EventsRootLayout from "./components/event/EventsRoot.tsx";
+import EventsPage, {EventsPageLoader} from "./components/event/Events.tsx";
+import EventDetailPage, {EventDetailsLoader, EventsDeleteAction} from "./components/event/EventDetail.tsx";
+import NewEventPage from "./components/event/NewEvent.tsx";
+import EditEventPage from "./components/event/EditEvent.tsx";
+import QuizzesRootLayout from "./components/quiz/QuizzesRoot.tsx";
+import QuizzesPage, {QuizzesPageLoader} from "./components/quiz/Quizzes.tsx";
+import QuizDetailPage, {QuizDeleteAction, QuizDetailsLoader} from "./components/quiz/QuizDetail.tsx";
+import EditQuizPage from "./components/quiz/EditQuiz.tsx";
+import NewQuizPage from "./components/quiz/NewQuiz.tsx";
+import {NewAndEditEventAction} from "./components/event/EventForm.tsx";
+import {NewEditQuizAction} from "./components/quiz/QuizForm.tsx";
+import NewsletterPage, {newsletterAction} from "./components/newsletter/Newsletter.tsx";
+import {logoutAction} from "./components/auth/Logout.tsx";
+import {checkAuthLoader, tokenLoader} from './util/auth.ts';
 
 // Routing paths
 const router = createBrowserRouter([

@@ -1,4 +1,4 @@
-import EventsList from './EventsList.jsx';
+import EventsList from './EventsList.tsx';
 import {Await, useLoaderData} from "react-router-dom";
 import {Suspense} from "react";
 

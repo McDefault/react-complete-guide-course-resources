@@ -1,5 +1,5 @@
 import {useRouteLoaderData} from "react-router-dom";
-import QuizForm from "./QuizForm.jsx";
+import QuizForm from "./QuizForm.tsx";
 
 function EditQuizPage() {
   const loaderData = useRouteLoaderData('quiz-detail');
