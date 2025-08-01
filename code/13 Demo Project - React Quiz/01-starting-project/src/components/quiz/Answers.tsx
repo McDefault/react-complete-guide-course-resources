@@ -1,6 +1,14 @@
 import {useRef} from "react";
 
-export default function Answers({answers, selectedAnswer, answerState, onSelect}) {
+type AnswersProp = {
+    answers: string[],
+    selectedAnswer: string,
+    answerState: 'correct' | 'wrong' | 'answered',
+    onSelect: (answer: string) => void, //function type definition: (...parameters) => (return type)
+}
+
+const Answers: React.FC<AnswersProp> = ({answers, selectedAnswer, answerState, onSelect}) => {
+
     const shuffledAnswers = useRef<string[]>(null);
 
     if (!shuffledAnswers.current) {
@@ -36,3 +44,5 @@ export default function Answers({answers, selectedAnswer, answerState, onSelect}
         </ul>
     )
 }
+
+export default Answers;

@@ -23,7 +23,7 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
         timer = timerToNextQuestion;
     }
 
-    function handelSelectAnswer(answer) {
+    const handelSelectAnswer = (answer: string): void => {
         setAnswer({
             selectedAnswer: answer,
             isCorrect: null
