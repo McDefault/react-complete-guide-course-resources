@@ -1,10 +1,16 @@
 import QuestionTimer from "./QuestionTimer.tsx";
 import Answers from "./Answers.tsx";
 import {useState} from "react";
+import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
 // import QUESTIONS from '../questions.js';
 
+type AnswerState = {
+    selectedAnswer: string,
+    isCorrect: boolean | null
+}
+
 export default function Question({index, onSelectAnswer, selectedAnswer, onSkipAnswer, QUESTIONS}) {
-    const [answer, setAnswer] = useState(
+    const [answer, setAnswer] = useState<AnswerState>(
         {
             selectedAnswer: '',
             isCorrect: null
@@ -41,7 +47,7 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
         }, timerOnSelectedAnswer)
     }
 
-    let answerState = '';
+    let answerState: AnswerStateValues = '';
 
     if (answer.selectedAnswer && answer.isCorrect !== null) {
         answerState = answer.isCorrect ? 'correct' : 'wrong';

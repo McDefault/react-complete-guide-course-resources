@@ -1,9 +1,10 @@
 import {useRef} from "react";
+import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
 
 type AnswersProp = {
     answers: string[],
     selectedAnswer: string,
-    answerState: 'correct' | 'wrong' | 'answered',
+    answerState: AnswerStateValues,
     onSelect: (answer: string) => void, //function type definition: (...parameters) => (return type)
 }
 

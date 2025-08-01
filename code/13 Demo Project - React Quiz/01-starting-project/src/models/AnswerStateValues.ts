@@ -1,0 +1,1 @@
+export type AnswerStateValues = 'correct' | 'wrong' | 'answered' | '';
