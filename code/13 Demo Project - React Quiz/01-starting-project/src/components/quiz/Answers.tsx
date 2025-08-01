@@ -1,7 +1,7 @@
 import {useRef} from "react";
 
 export default function Answers({answers, selectedAnswer, answerState, onSelect}) {
-    const shuffledAnswers = useRef();
+    const shuffledAnswers = useRef<string[]>(null);
 
     if (!shuffledAnswers.current) {
         shuffledAnswers.current = [...answers]; //create new array reference copy in memory from original reference
