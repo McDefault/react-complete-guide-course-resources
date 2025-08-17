@@ -1,7 +1,14 @@
 import classes from '../event/EventsList.module.css';
 import {Link} from "react-router-dom";
+import type {FC} from "react";
+import type {Quiz} from "../../models/Quiz.ts";
 
-function QuizzesList({quizzes}) {
+type QuizzesListProp = {
+    quizzes: Quiz[],
+}
+
+const QuizzesList: FC<QuizzesListProp> = ({ quizzes }) => {
+
     return (
         <div className={classes.events}>
             <h1>All Quizes</h1>
