@@ -1,10 +1,11 @@
 import classes from "./EventItem.module.css";
 import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
-import Event from "../../models/Event.ts";
+import {type FC} from "react";
+import {type Event} from "../../models/Event.ts";
 
 type EventsItemProp = { event: Event };
 
-const EventItem: React.FC<EventsItemProp> = ({event}) => {
+const EventItem: FC<EventsItemProp> = ({event}) => {
     const submit = useSubmit();
     const {token} = useRouteLoaderData("root");
 
