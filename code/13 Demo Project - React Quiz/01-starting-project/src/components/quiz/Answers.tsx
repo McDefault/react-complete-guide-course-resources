@@ -1,5 +1,6 @@
 import {useRef} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
+import {type FC} from "react";
 
 type AnswersProp = {
     answers: string[],
@@ -8,7 +9,7 @@ type AnswersProp = {
     onSelect: (answer: string) => void, //function type definition: (...parameters) => (return type)
 }
 
-const Answers: React.FC<AnswersProp> = ({answers, selectedAnswer, answerState, onSelect}) => {
+const Answers: FC<AnswersProp> = ({answers, selectedAnswer, answerState, onSelect}) => {
 
     const shuffledAnswers = useRef<string[]>(null);
 
