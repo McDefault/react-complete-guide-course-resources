@@ -1,6 +1,14 @@
-import {useEffect, useState} from "react";
+import {type FC, useEffect, useState} from "react";
+import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
 
-export default function QuestionTimer({timeout, onTimeout, mode}) {
+type QuestionTimerProp = {
+    timeout: number,
+    onTimeout: (answer: string) => void | null, //function type definition: (...parameters) => (return type)
+    mode: AnswerStateValues, //function type definition: (...parameters) => (return type)
+}
+
+const QuestionTimer: FC<QuestionTimerProp> = ({timeout, onTimeout, mode}) => {
+
     const [remainingTime, setRemainingTime] = useState(timeout);
 
     useEffect(() => {
@@ -21,3 +29,5 @@ export default function QuestionTimer({timeout, onTimeout, mode}) {
         <progress id={"question-time"} max={timeout} value={remainingTime} className={mode}></progress>
     )
 }
+
+export default QuestionTimer;
