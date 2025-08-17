@@ -1,7 +1,9 @@
 import QuizForm from "./QuizForm.tsx";
+import type {Quiz} from "../../models/Quiz.ts";
 
 function NewQuizPage() {
-    const initialQuiz = {
+    const initialQuizData: Quiz = {
+        id: '',
         title: 'Quiz Title',
         description: 'Quiz Description',
         questions:
@@ -29,7 +31,8 @@ function NewQuizPage() {
                 }
             ]
     }
-    return <QuizForm method={"post"} quiz={initialQuiz}/>
+
+    return <QuizForm method={"post"} quiz={initialQuizData}/>
 }
 
 export default NewQuizPage;
