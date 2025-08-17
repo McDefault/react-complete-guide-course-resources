@@ -1,9 +1,16 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
-
 import classes from './EventForm.module.css';
+import {type FC} from "react";
 import {getAuthToken} from "../../util/auth.ts";
 
-function EventForm({method, event}) {
+import {type Event} from "../../models/Event.ts"
+
+type EventsFormProp = {
+    method: string,
+    event: Event
+};
+
+const EventForm: FC<EventsFormProp> = ({method, event}) => {
     const navigate = useNavigate();
     const navigation = useNavigation();
     const isSubmitting = navigation.state === 'submitting';
