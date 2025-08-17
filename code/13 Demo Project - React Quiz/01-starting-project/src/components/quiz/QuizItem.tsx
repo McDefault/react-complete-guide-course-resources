@@ -1,7 +1,13 @@
 import classes from '../event/EventItem.module.css';
 import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
+import Quiz from '../../models/Quiz.ts';
+import type {FC} from "react";
 
-function QuizItem({quiz}) {
+type QuizItemProp = {
+    quiz: Quiz,
+}
+
+const QuizItem: FC<QuizItemProp> = ({quiz}) => {
     const submit = useSubmit();
     const {token} = useRouteLoaderData("root");
 
