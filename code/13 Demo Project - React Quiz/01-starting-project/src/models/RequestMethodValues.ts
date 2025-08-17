@@ -1,0 +1,1 @@
+export type RequestMethodValues = 'patch' | 'post' | 'get' | 'delete';

@@ -1,12 +1,7 @@
 import quizCompleteImg from '../../assets/quiz-complete.png';
 import {Link} from "react-router-dom";
 import type {FC} from "react";
-
-type Question = {
-    id: string;
-    text: string;
-    answers: string[]
-}
+import type {Question} from "../../models/Question.ts";
 
 type Questions = Question[]
 
