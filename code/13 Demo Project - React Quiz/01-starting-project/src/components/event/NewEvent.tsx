@@ -1,7 +1,16 @@
 import EventForm from "./EventForm.tsx";
-
+import type {Event} from "../../models/Event";
 function NewEventPage() {
-    return <EventForm method={"post"} />
+
+    const initialEventData: Event = {
+        id: '',
+        title: 'New Event',
+        description: 'New Description',
+        image: '',
+        date: '',
+    }
+
+    return <EventForm method={"post"} event={initialEventData} />
 }
 
 export default NewEventPage;
