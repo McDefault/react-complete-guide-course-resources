@@ -1,8 +1,21 @@
 import quizCompleteImg from '../../assets/quiz-complete.png';
-import QUESTIONS from '../../questions.js';
 import {Link} from "react-router-dom";
+import type {FC} from "react";
 
-export default function Summary({userAnswers}) {
+type Question = {
+    id: string;
+    text: string;
+    answers: string[]
+}
+
+type Questions = Question[]
+
+type SummaryProp = {
+    userAnswers: string[],
+    QUESTIONS: Questions,
+}
+
+const Summary: FC<SummaryProp> = ({userAnswers, QUESTIONS}) => {
     const skippedUserAnswers = userAnswers.filter(answer => answer === null);
     const correctUserAnswers = userAnswers.filter((answer, index) => answer === QUESTIONS[index].answers[0]);
 
@@ -63,3 +76,5 @@ export default function Summary({userAnswers}) {
         </div>
     )
 }
+
+export default Summary;
