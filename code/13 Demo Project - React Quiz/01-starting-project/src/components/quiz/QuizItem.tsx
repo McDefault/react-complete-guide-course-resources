@@ -1,6 +1,6 @@
 import classes from '../event/EventItem.module.css';
 import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
-import Quiz from '../../models/Quiz.ts';
+import type {Quiz} from '../../models/Quiz.ts';
 import type {FC} from "react";
 
 type QuizItemProp = {
