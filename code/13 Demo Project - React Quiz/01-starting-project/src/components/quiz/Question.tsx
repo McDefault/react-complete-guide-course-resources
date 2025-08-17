@@ -1,15 +1,23 @@
 import QuestionTimer from "./QuestionTimer.tsx";
 import Answers from "./Answers.tsx";
-import {useState} from "react";
+import {type FC, useState} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
-// import QUESTIONS from '../questions.js';
+import type {Question} from "../../models/Question.ts";
 
 type AnswerState = {
     selectedAnswer: string,
     isCorrect: boolean | null
 }
 
-export default function Question({index, onSelectAnswer, selectedAnswer, onSkipAnswer, QUESTIONS}) {
+type QuestionProp = {
+    index: number,
+    onSelectAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type)
+    onSkipAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type) //todo context
+    QUESTIONS: Question[],
+}
+
+const Question: FC<QuestionProp> = ({index, onSelectAnswer, onSkipAnswer, QUESTIONS}) => {
+
     const [answer, setAnswer] = useState<AnswerState>(
         {
             selectedAnswer: '',
@@ -75,3 +83,5 @@ export default function Question({index, onSelectAnswer, selectedAnswer, onSkipA
         </div>
     )
 }
+
+export default Question;
