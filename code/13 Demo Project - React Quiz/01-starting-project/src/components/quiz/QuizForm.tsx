@@ -2,8 +2,16 @@ import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-r
 
 import classes from '../event/EventForm.module.css';
 import {getAuthToken} from "../../util/auth.ts";
+import type {FC} from "react";
+import type {RequestMethodValues} from "../../models/RequestMethodValues.ts";
+import type {Quiz} from "../../models/Quiz.ts";
 
-function QuizForm({ method, quiz }) {
+type QuizFormProp = {
+    method: RequestMethodValues,
+    quiz: Quiz,
+}
+
+const QuizForm: FC<QuizFormProp> = ({ method, quiz }) => {
   const navigate = useNavigate();
 
     const navigation = useNavigation();
