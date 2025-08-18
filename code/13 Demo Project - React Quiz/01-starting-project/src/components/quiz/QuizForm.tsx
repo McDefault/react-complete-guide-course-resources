@@ -1,28 +1,61 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
-
 import classes from '../event/EventForm.module.css';
 import {getAuthToken} from "../../util/auth.ts";
-import type {FC} from "react";
+import {type FC, useContext} from "react";
 import type {RequestMethodValues} from "../../models/RequestMethodValues.ts";
 import type {Quiz} from "../../models/Quiz.ts";
+import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 
 type QuizFormProp = {
     method: RequestMethodValues,
-    quiz: Quiz,
 }
 
-const QuizForm: FC<QuizFormProp> = ({ method, quiz }) => {
-  const navigate = useNavigate();
-
+const QuizForm: FC<QuizFormProp> = ({method}) => {
+    const navigate = useNavigate();
     const navigation = useNavigation();
     const isSubmitting = navigation.state === 'submitting';
     const actionData = useActionData();
 
-  function cancelHandler() {
-    navigate('..');
-  }
+    const initialQuizData: Quiz = {
+        id: '',
+        title: 'Quiz Title',
+        description: 'Quiz Description',
+        questions:
+            [
+                {
+                    id: 'q1',
+                    text: 'Question 1 Title',
+                    answers: [
+                        'Answer 1',
+                        'Answer 2',
+                        'Answer 3',
+                        'Answer 4',
+                    ],
+                },
+                {
+                    id: 'q2',
+                    text:
+                        'Question 2 Title',
+                    answers: [
+                        'Answer 1',
+                        'Answer 2',
+                        'Answer 3',
+                        'Answer 4',
+                    ],
+                }
+            ]
+    }
+    let {quiz} = useContext(QuizProgressContext);
 
-  return (
+    if (!quiz.title) {
+        quiz = initialQuizData
+    }
+
+    function cancelHandler() {
+        navigate('..');
+    }
+
+    return (
         <Form method={method} className={classes.form}>
             {actionData && actionData.errors && (<ul>
                 {Object.values(actionData.errors).map((error) => (
@@ -36,6 +69,7 @@ const QuizForm: FC<QuizFormProp> = ({ method, quiz }) => {
                     type="text"
                     name="title"
                     required
+                    placeholder={initialQuizData.title}
                     defaultValue={quiz ? quiz.title : ''}
                 />
             </p>
@@ -46,6 +80,7 @@ const QuizForm: FC<QuizFormProp> = ({ method, quiz }) => {
                     name="description"
                     rows="5"
                     required
+                    placeholder={initialQuizData.description}
                     defaultValue={quiz ? quiz.description : ''}
                 />
             </p>
