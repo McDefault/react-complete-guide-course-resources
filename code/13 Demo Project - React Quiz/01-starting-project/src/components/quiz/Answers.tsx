@@ -1,15 +1,20 @@
-import {useRef} from "react";
+import {useContext, useRef} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
 import {type FC} from "react";
+import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 
 type AnswersProp = {
-    answers: string[],
+    answers: string[], //replaced by QuizProgressContext
     selectedAnswer: string,
     answerState: AnswerStateValues,
     onSelect: (answer: string) => void, //function type definition: (...parameters) => (return type)
 }
 
-const Answers: FC<AnswersProp> = ({answers, selectedAnswer, answerState, onSelect}) => {
+const Answers: FC<AnswersProp> = ({selectedAnswer, answerState, onSelect}) => {
+
+    const {index, QUESTIONS} = useContext(QuizProgressContext)
+
+    const answers = QUESTIONS[index].answers;
 
     const shuffledAnswers = useRef<string[]>(null);
 
