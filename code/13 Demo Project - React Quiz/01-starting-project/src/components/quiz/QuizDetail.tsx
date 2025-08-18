@@ -1,11 +1,13 @@
 import {redirect, useRouteLoaderData} from 'react-router-dom';
 import QuizItem from "./QuizItem.tsx";
 import {getAuthToken} from "../../util/auth.ts";
+import QuizProgressProvider from "../../store/quiz-progress-context.tsx";
 
 function QuizDetailPage() {
-    const loaderData = useRouteLoaderData('quiz-detail');
     return (
-        <QuizItem quiz={loaderData.quiz}/>
+        <QuizProgressProvider>
+            <QuizItem/>
+        </QuizProgressProvider>
     );
 }
 
