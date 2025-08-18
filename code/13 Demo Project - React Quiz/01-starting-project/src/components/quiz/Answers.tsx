@@ -12,8 +12,9 @@ type AnswersProp = {
 
 const Answers: FC<AnswersProp> = ({selectedAnswer, answerState, onSelect}) => {
 
-    const {index, QUESTIONS} = useContext(QuizProgressContext)
+    const {index, quiz} = useContext(QuizProgressContext)
 
+    const QUESTIONS = quiz.questions;
     const answers = QUESTIONS[index].answers;
 
     const shuffledAnswers = useRef<string[]>(null);

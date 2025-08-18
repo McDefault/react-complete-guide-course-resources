@@ -11,9 +11,9 @@ import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 // }
 
 const Summary: FC = () => {
-    const {items: userAnswers, QUESTIONS} = useContext(QuizProgressContext)
+    const {items: userAnswers, quiz} = useContext(QuizProgressContext)
 
-
+    const QUESTIONS = quiz.questions;
     const skippedUserAnswers = userAnswers.filter(answer => answer === null);
     const correctUserAnswers = userAnswers.filter((answer, index) => answer === QUESTIONS[index].answers[0]);
 

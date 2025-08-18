@@ -18,8 +18,9 @@ type AnswerState = {
 
 const Question: FC = () => {
 
-    const {index, QUESTIONS, onSelectAnswer, onSkipAnswer} = useContext(QuizProgressContext)
+    const {index, quiz, onSelectAnswer, onSkipAnswer} = useContext(QuizProgressContext)
 
+    const QUESTIONS = quiz.questions;
     const [answer, setAnswer] = useState<AnswerState>(
         {
             selectedAnswer: '',

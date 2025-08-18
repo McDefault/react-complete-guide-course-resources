@@ -5,9 +5,10 @@ import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 
 export default function QuizProgressFrame() {
 
-    const {items, QUESTIONS} = useContext(QuizProgressContext)
+    const {items, quiz} = useContext(QuizProgressContext)
 
     //derived state - computed value
+    const QUESTIONS = quiz.questions;
     const activeQuestionIndex = items.length;
     const quizIsCompleted = activeQuestionIndex === QUESTIONS.length; //derived state
 
