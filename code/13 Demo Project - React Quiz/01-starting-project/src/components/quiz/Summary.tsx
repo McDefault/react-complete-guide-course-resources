@@ -1,16 +1,19 @@
 import quizCompleteImg from '../../assets/quiz-complete.png';
 import {Link} from "react-router-dom";
-import type {FC} from "react";
-import type {Question} from "../../models/Question.ts";
+import {type FC, useContext} from "react";
+import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 
-type Questions = Question[]
+// type Questions = Question[]
 
-type SummaryProp = {
-    userAnswers: string[],
-    QUESTIONS: Questions,
-}
+// type SummaryProp = { //replaced with context
+//     userAnswers: string[],
+//     QUESTIONS: Questions,
+// }
 
-const Summary: FC<SummaryProp> = ({userAnswers, QUESTIONS}) => {
+const Summary: FC = () => {
+    const {items: userAnswers, QUESTIONS} = useContext(QuizProgressContext)
+
+
     const skippedUserAnswers = userAnswers.filter(answer => answer === null);
     const correctUserAnswers = userAnswers.filter((answer, index) => answer === QUESTIONS[index].answers[0]);
 
