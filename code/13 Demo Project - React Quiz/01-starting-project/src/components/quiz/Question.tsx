@@ -1,22 +1,24 @@
 import QuestionTimer from "./QuestionTimer.tsx";
 import Answers from "./Answers.tsx";
-import {type FC, useState} from "react";
+import {type FC, useContext, useState} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
-import type {Question} from "../../models/Question.ts";
+import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 
 type AnswerState = {
     selectedAnswer: string,
     isCorrect: boolean | null
 }
 
-type QuestionProp = {
-    index: number,
-    onSelectAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type)
-    onSkipAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type) //todo context
-    QUESTIONS: Question[],
-}
+// type QuestionProp = { //replaced all with context store provider QuizProgressContext
+//     index: number,
+//     onSelectAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type)
+//     onSkipAnswer: (answer: string) => void, //function type definition: (...parameters) => (return type)
+//     QUESTIONS: QuestionType[],
+// }
 
-const Question: FC<QuestionProp> = ({index, onSelectAnswer, onSkipAnswer, QUESTIONS}) => {
+const Question: FC = () => {
+
+    const {index, QUESTIONS, onSelectAnswer, onSkipAnswer} = useContext(QuizProgressContext)
 
     const [answer, setAnswer] = useState<AnswerState>(
         {
