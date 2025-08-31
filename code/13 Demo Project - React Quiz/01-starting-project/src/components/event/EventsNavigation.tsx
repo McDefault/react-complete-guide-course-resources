@@ -1,9 +1,10 @@
-import {NavLink, useRouteLoaderData} from 'react-router-dom';
+import {NavLink} from 'react-router-dom';
 
 import classes from './EventsNavigation.module.css';
+import {useAuthContext} from "../../hooks/useAuthContext.ts";
 
 function EventsNavigation() {
-    const {token} = useRouteLoaderData("root");
+    const {token} = useAuthContext();
 
     return (
         <header className={classes.header}>

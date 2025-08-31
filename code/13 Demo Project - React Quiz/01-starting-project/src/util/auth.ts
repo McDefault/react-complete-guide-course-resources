@@ -1,7 +1,10 @@
 import {redirect} from "react-router-dom";
+import {TokenLoaderType} from "../models/loaders/TokenLoaderType.ts";
+
+const TOKEN_KEY = 'token';
 
 export function getAuthToken() {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem(TOKEN_KEY);
 
     if (!token) {
         return null;
@@ -18,9 +21,9 @@ export function getAuthToken() {
 
 export function setAuthToken(token = null) {
     if (!token) {
-        localStorage.removeItem('token');
+        localStorage.removeItem(TOKEN_KEY);
     } else {
-        localStorage.setItem('token', token);
+        localStorage.setItem(TOKEN_KEY, token);
     }
 }
 
@@ -37,7 +40,7 @@ export function logout() {
     setAuthToken();
 }
 
-export function tokenLoader() {
+export function tokenLoader(): TokenLoaderType {
     return {
         token: getAuthToken()
     };

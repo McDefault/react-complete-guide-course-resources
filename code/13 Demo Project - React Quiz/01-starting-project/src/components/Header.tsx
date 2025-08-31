@@ -1,11 +1,12 @@
 import logImg from '../assets/quiz-logo.png';
-import {Form, NavLink, useRouteLoaderData} from 'react-router-dom';
+import {Form, NavLink} from 'react-router-dom';
 
 import classes from './Header.module.css'
 import NewsletterSignup from "./newsletter/NewsletterSignup.tsx";
+import {useAuthContext} from "../hooks/useAuthContext.ts";
 
 export default function Header() {
-    const {token} = useRouteLoaderData("root");
+    const {token} = useAuthContext();
     return (
         <header className={classes.header}>
             <img src={logImg} alt=""/>
