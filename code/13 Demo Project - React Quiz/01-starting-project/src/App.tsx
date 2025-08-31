@@ -20,13 +20,21 @@ import NewsletterPage, {newsletterAction} from "./components/newsletter/Newslett
 import {logoutAction} from "./components/auth/Logout.tsx";
 import {checkAuthLoader, tokenLoader} from './util/auth.ts';
 
+export const ROUTE_IDS = {
+    root: "root",
+    eventsPage: "events-page",
+    eventDetail: "event-detail",
+    quizzesPage: "quizzes-page",
+    quizDetail: "quiz-detail",
+} as const;
+
 // Routing paths
 const router = createBrowserRouter([
     {
         path: "/",
         element: <RouterRoot/>,
         errorElement: <Error/>,
-        id: "root",
+        id: ROUTE_IDS.root,
         loader: tokenLoader,
         children: [
             {index: true, element: <Dashboard/>}, //path: ""
@@ -41,11 +49,12 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <EventsPage/>,
+                        id: ROUTE_IDS.eventsPage,
                         loader: EventsPageLoader
                     },
                     {
                         path: ':eventId',
-                        id: 'event-detail',
+                        id: ROUTE_IDS.eventDetail,
                         loader: EventDetailsLoader,
                         children: [
                             {
@@ -77,11 +86,12 @@ const router = createBrowserRouter([
                     {
                         index: true,
                         element: <QuizzesPage/>,
+                        id: ROUTE_IDS.quizzesPage,
                         loader: QuizzesPageLoader
                     },
                     {
                         path: ':quizId',
-                        id: 'quiz-detail',
+                        id: ROUTE_IDS.quizDetail,
                         loader: QuizDetailsLoader,
                         children: [
                             {
