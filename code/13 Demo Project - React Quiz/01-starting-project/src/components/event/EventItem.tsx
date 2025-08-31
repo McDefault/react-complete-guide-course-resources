@@ -1,13 +1,14 @@
 import classes from "./EventItem.module.css";
-import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
+import {Link, useSubmit} from "react-router-dom";
 import {type FC} from "react";
 import {type Event} from "../../models/Event.ts";
+import {useAuthContext} from "../../hooks/useAuthContext.ts";
 
 type EventsItemProp = { event: Event };
 
 const EventItem: FC<EventsItemProp> = ({event}) => {
     const submit = useSubmit();
-    const {token} = useRouteLoaderData("root");
+    const {token} = useAuthContext();
 
     function startDeleteHandler() {
         const proceed = window.confirm('Are you sure you want to delete this event?');

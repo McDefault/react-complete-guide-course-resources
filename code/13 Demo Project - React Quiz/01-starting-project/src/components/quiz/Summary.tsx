@@ -1,7 +1,7 @@
 import quizCompleteImg from '../../assets/quiz-complete.png';
 import {Link} from "react-router-dom";
-import {type FC, useContext} from "react";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {type FC} from "react";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
 
 // type Questions = Question[]
 
@@ -11,7 +11,8 @@ import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 // }
 
 const Summary: FC = () => {
-    const {items: userAnswers, quiz} = useContext(QuizProgressContext)
+
+    const {items: userAnswers, quiz} = useQuizProgressContext();
 
     const QUESTIONS = quiz.questions;
     const skippedUserAnswers = userAnswers.filter(answer => answer === null);

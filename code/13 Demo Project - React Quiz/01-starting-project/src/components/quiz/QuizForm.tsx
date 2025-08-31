@@ -1,10 +1,10 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 import classes from '../event/EventForm.module.css';
-import {type FC, useContext} from "react";
+import {type FC} from "react";
 import type {RequestMethodValues} from "../../models/RequestMethodValues.ts";
 import type {Quiz} from "../../models/Quiz.ts";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
 import {patchQuizById, postQuiz} from "../../util/http.ts";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
 
 type QuizFormProp = {
     method: RequestMethodValues,
@@ -45,7 +45,8 @@ const QuizForm: FC<QuizFormProp> = ({method}) => {
                 }
             ]
     }
-    let {quiz} = useContext(QuizProgressContext);
+
+    let {quiz} = useQuizProgressContext();
 
     if (!quiz.title) {
         quiz = initialQuizData

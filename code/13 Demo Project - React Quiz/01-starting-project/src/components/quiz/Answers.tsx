@@ -1,7 +1,7 @@
-import {useContext, useRef} from "react";
+import {useRef} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
 import {type FC} from "react";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
 
 type AnswersProp = {
     answers: string[], //replaced by QuizProgressContext
@@ -12,7 +12,7 @@ type AnswersProp = {
 
 const Answers: FC<AnswersProp> = ({selectedAnswer, answerState, onSelect}) => {
 
-    const {index, quiz} = useContext(QuizProgressContext)
+    const {index, quiz} = useQuizProgressContext();
 
     const QUESTIONS = quiz.questions;
     const answers = QUESTIONS[index].answers;

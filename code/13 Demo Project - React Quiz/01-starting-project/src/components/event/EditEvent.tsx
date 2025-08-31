@@ -1,10 +1,10 @@
 import EventForm from "./EventForm.tsx";
-import {useRouteLoaderData} from "react-router-dom";
+import {useEventDetailsLoader} from "../../hooks/useEventDetailsLoader.ts";
 
 function EditEventPage() {
-  const loaderData = useRouteLoaderData('event-detail');
-  const event = loaderData.event;
-  return <EventForm method={"patch"}  event={event} />
+  const {fetchEvent} = useEventDetailsLoader();
+
+  return <EventForm method={"patch"}  event={fetchEvent} />
 }
 
 export default EditEventPage;

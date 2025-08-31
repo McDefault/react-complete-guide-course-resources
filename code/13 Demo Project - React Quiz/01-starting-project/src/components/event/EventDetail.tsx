@@ -1,7 +1,7 @@
 import {redirect} from 'react-router-dom';
 import EventItem from "./EventItem.tsx";
 import {deleteEventById, getEventById} from "../../util/http.ts";
-import {EventDetailsLoaderType} from "../../models/EventDetailsLoaderType.ts";
+import {EventDetailsLoaderType} from "../../models/loaders/EventDetailsLoaderType.ts";
 import {useEventDetailsLoader} from "../../hooks/useEventDetailsLoader.ts";
 
 function EventDetailPage() {

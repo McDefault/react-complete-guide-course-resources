@@ -3,7 +3,7 @@ import {Await} from "react-router-dom";
 import {Suspense} from "react";
 import {getAllEvents} from "../../util/http.ts";
 import {useEventsPageLoader} from "../../hooks/useEventsPageLoader.ts";
-import {EventsPageLoaderType} from "../../models/EventsPageLoaderType.ts";
+import {EventsPageLoaderType} from "../../models/loaders/EventsPageLoaderType.ts";
 
 function EventsPage() {
     // const {fetchEvents} = useLoaderData(); //load current route loader

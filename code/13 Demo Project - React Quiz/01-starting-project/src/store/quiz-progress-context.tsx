@@ -1,14 +1,6 @@
 import {createContext, type FC, type ReactNode, useCallback, useState} from "react";
-import {useRouteLoaderData} from "react-router-dom";
-import type {Quiz} from "../models/Quiz.ts";
-
-type QuizProgressContextType = {
-    items: string[];
-    index: number;
-    quiz: Quiz,
-    onSelectAnswer: (answer: string) => void;
-    onSkipAnswer: () => void;
-}
+import {useQuizDetailsLoader} from "../hooks/useQuizDetailsLoader.ts";
+import {QuizProgressContextType} from "../models/context/QuizProgressContextType.ts";
 
 export const QuizProgressContext = createContext<QuizProgressContextType>({
     items: [],
@@ -37,7 +29,8 @@ type QuizProgressProviderProp = {
 
 const QuizProgressProvider: FC<QuizProgressProviderProp> = ({children}) => {
 
-    const loaderData = useRouteLoaderData('quiz-detail');
+    // const loaderData = useRouteLoaderData('quiz-detail');
+    const {fetchQuiz} = useQuizDetailsLoader();
 
     type userAnswers = {
         items: string[]

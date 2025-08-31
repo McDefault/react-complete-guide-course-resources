@@ -1,8 +1,8 @@
 import QuestionTimer from "./QuestionTimer.tsx";
 import Answers from "./Answers.tsx";
-import {type FC, useContext, useState} from "react";
+import {type FC, useState} from "react";
 import type {AnswerStateValues} from "../../models/AnswerStateValues.ts";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
 
 type AnswerState = {
     selectedAnswer: string,
@@ -18,7 +18,7 @@ type AnswerState = {
 
 const Question: FC = () => {
 
-    const {index, quiz, onSelectAnswer, onSkipAnswer} = useContext(QuizProgressContext)
+    const {index, quiz, onSelectAnswer, onSkipAnswer} = useQuizProgressContext();
 
     const QUESTIONS = quiz.questions;
     const [answer, setAnswer] = useState<AnswerState>(

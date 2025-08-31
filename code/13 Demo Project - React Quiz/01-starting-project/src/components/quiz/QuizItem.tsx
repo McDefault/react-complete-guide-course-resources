@@ -1,13 +1,13 @@
 import classes from '../event/EventItem.module.css';
-import {Link, useRouteLoaderData, useSubmit} from "react-router-dom";
-import {type FC, useContext} from "react";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {Link, useSubmit} from "react-router-dom";
+import {type FC} from "react";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
+import {useAuthContext} from "../../hooks/useAuthContext.ts";
 
 const QuizItem: FC = () => {
     const submit = useSubmit();
-    const {token} = useRouteLoaderData("root");
-
-    const {quiz} = useContext(QuizProgressContext);
+    const {token} = useAuthContext();
+    const {quiz} = useQuizProgressContext();
 
     function startDeleteHandler() {
         const proceed = window.confirm('Are you sure you want to delete this quiz?');

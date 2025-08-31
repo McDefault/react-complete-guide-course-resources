@@ -2,7 +2,7 @@ import {redirect} from 'react-router-dom';
 import QuizItem from "./QuizItem.tsx";
 import QuizProgressProvider from "../../store/quiz-progress-context.tsx";
 import {deleteQuizById, getQuizById} from "../../util/http.ts";
-import {QuizDetailsLoaderType} from "../../models/QuizDetailsLoaderType.ts";
+import {QuizDetailsLoaderType} from "../../models/loaders/QuizDetailsLoaderType.ts";
 
 function QuizDetailPage() {
     return (

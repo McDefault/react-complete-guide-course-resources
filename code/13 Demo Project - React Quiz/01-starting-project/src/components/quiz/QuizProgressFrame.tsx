@@ -1,11 +1,10 @@
-import {useContext} from "react";
 import Question from "./Question.tsx";
 import Summary from "./Summary.tsx";
-import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {useQuizProgressContext} from "../../hooks/useQuizProgressContext.ts";
 
 export default function QuizProgressFrame() {
 
-    const {items, quiz} = useContext(QuizProgressContext)
+    const {items, quiz} = useQuizProgressContext();
 
     //derived state - computed value
     const QUESTIONS = quiz.questions;
