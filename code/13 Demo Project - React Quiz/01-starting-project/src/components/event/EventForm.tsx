@@ -1,9 +1,9 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 import classes from './EventForm.module.css';
 import {type FC} from "react";
-import {getAuthToken} from "../../util/auth.ts";
 
 import {type Event} from "../../models/Event.ts"
+import {patchEventById, postEvent} from "../../util/http.ts";
 
 type EventsFormProp = {
     method: string,
@@ -61,39 +61,21 @@ export async function NewAndEditEventAction({request, params}) {
     const method = request.method;
     const data = await request.formData();
 
-    const eventData = {
+    let newEvent: Event = {
+        id: '',
         title: data.get('title'),
         image: data.get('image'),
         date: data.get('date'),
-        description: data.get('description'),
+        description: data.get('description')
     };
-
-    let url = 'http://localhost:8080/events';
 
     if (method === 'PATCH') {
         const id = params.eventId; //referring to Router Definition
-        url += `/${id}`;
+        await patchEventById(id, newEvent)
+    } else {
+        await postEvent(newEvent);
     }
 
-    const token = getAuthToken();
-    const response = await fetch(url, {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + token
-        },
-        body: JSON.stringify(eventData),
-    });
-
-    if (response.status === 422) {
-        return response; //return for useActionData
-    }
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'Could not save event.'}), {
-            status: 500,
-        });
-    }
 
     return redirect('/events');
 }

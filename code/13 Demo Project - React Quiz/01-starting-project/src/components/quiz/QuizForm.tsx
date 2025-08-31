@@ -1,10 +1,10 @@
 import {Form, redirect, useActionData, useNavigate, useNavigation} from 'react-router-dom';
 import classes from '../event/EventForm.module.css';
-import {getAuthToken} from "../../util/auth.ts";
 import {type FC, useContext} from "react";
 import type {RequestMethodValues} from "../../models/RequestMethodValues.ts";
 import type {Quiz} from "../../models/Quiz.ts";
 import {QuizProgressContext} from "../../store/quiz-progress-context.tsx";
+import {patchQuizById, postQuiz} from "../../util/http.ts";
 
 type QuizFormProp = {
     method: RequestMethodValues,
@@ -125,6 +125,7 @@ export default QuizForm;
 export async function NewEditQuizAction({request, params}) {
     const method = request.method;
     const data = await request.formData();
+    const id = params.quizId; //referring to Router Definition
 
     const quizData = {
         title: data.get('title'),
@@ -153,31 +154,10 @@ export async function NewEditQuizAction({request, params}) {
         ],
     };
 
-    let url = 'http://localhost:8080/quizzes';
-
     if (method === 'PATCH') {
-        const id = params.quizId; //referring to Router Definition
-        url += `/${id}`;
-    }
-
-    const response = await fetch(url, {
-        method: method,
-        headers: {
-            'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + getAuthToken(),
-
-        },
-        body: JSON.stringify(quizData),
-    });
-
-    if (response.status === 422) {
-        return response;
-    }
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'Could not save quiz.'}), {
-            status: 500,
-        });
+        await patchQuizById(id, quizData);
+    } else {
+        await postQuiz(quizData);
     }
 
     return redirect('/quiz');

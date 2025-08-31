@@ -67,7 +67,7 @@ const QuizProgressProvider: FC<QuizProgressProviderProp> = ({children}) => {
     const quizProgressContextValue: QuizProgressContextType = {
         items: userAnswers.items,
         index: activeQuestionIndex,
-        quiz: loaderData.quiz,
+        quiz: fetchQuiz,
         onSelectAnswer: handleClickAnswer,
         onSkipAnswer: handelSkipAnswer,
     };

@@ -1,9 +1,13 @@
 import EventsList from './EventsList.tsx';
-import {Await, useLoaderData} from "react-router-dom";
+import {Await} from "react-router-dom";
 import {Suspense} from "react";
+import {getAllEvents} from "../../util/http.ts";
+import {useEventsPageLoader} from "../../hooks/useEventsPageLoader.ts";
+import {EventsPageLoaderType} from "../../models/EventsPageLoaderType.ts";
 
 function EventsPage() {
-    const {fetchEvents} = useLoaderData();
+    // const {fetchEvents} = useLoaderData(); //load current route loader
+    const {fetchEvents} = useEventsPageLoader(); //load specified loader
 
     return (
         <Suspense fallback={<h1>Loading...</h1>}>
@@ -16,18 +20,7 @@ function EventsPage() {
 
 export default EventsPage;
 
-async function getAllEvents() {
-    const response = await fetch('http://localhost:8080/events');
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'No events found.'}), {status: 500}); // Fallback to errorElement
-    }
-
-    const ResData = await response.json();
-    return ResData.events;
-}
-
-export async function EventsPageLoader() {
+export async function EventsPageLoader(): Promise<EventsPageLoaderType> {
     return {
         fetchEvents: getAllEvents(),
         // fetchEvents: await getAllEvents(), //use await to force resolve before page load

@@ -1,6 +1,7 @@
 import AuthForm from './AuthForm.tsx';
 import {redirect} from "react-router-dom";
 import {setAuthExpiration, setAuthToken} from "../../util/auth.ts";
+import {loginUser} from "../../util/http.ts";
 
 function AuthenticationPage() {
     return <AuthForm/>;
@@ -24,28 +25,9 @@ export async function authAction({request}) {
         password: authFormData.get('password'),
     }
 
-    const url = `http://localhost:8080/${mode}`;
+    //todo form validation
 
-    const response = await fetch(url, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(authData),
-    });
-
-    if (response.status === 422 || response.status === 401) {
-        return response; //return for useActionData
-    }
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'Could not authenticate user.'}), {
-            status: 500,
-        });
-    }
-
-    const resData = await response.json();
-    const token = resData.token;
+    const {token} = await loginUser(authData, mode);
 
     const expires = new Date();
     expires.setHours(expires.getHours() + 1);

@@ -1,5 +1,6 @@
 import {useLoaderData} from "react-router-dom";
 import QuizzesList from "./QuizzesList.tsx";
+import {getAllQuizzes} from "../../util/http.ts";
 
 function QuizzesPage() {
     const loaderData = useLoaderData();
@@ -12,11 +13,7 @@ function QuizzesPage() {
 export default QuizzesPage;
 
 export async function QuizzesPageLoader() {
-    const response = await fetch('http://localhost:8080/quizzes');
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'No quizzes found.'}), {status: 500}); // Fallback to errorElement
-    } else {
-        return response;
+    return {
+        fetchQuizzes: await getAllQuizzes(),
     }
 }

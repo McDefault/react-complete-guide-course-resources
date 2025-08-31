@@ -1,36 +1,27 @@
-import {redirect, useRouteLoaderData} from 'react-router-dom';
+import {redirect} from 'react-router-dom';
 import EventItem from "./EventItem.tsx";
-import {getAuthToken} from "../../util/auth.ts";
+import {deleteEventById, getEventById} from "../../util/http.ts";
+import {EventDetailsLoaderType} from "../../models/EventDetailsLoaderType.ts";
+import {useEventDetailsLoader} from "../../hooks/useEventDetailsLoader.ts";
 
 function EventDetailPage() {
-    const loaderData = useRouteLoaderData('event-detail');
+    const loaderData = useEventDetailsLoader();
     return (
-        <EventItem event={loaderData.event}/>
+        <EventItem event={loaderData.fetchEvent}/>
     );
 }
 
 export default EventDetailPage;
 
-export async function EventDetailsLoader({params}) {
+export async function EventDetailsLoader({params}): Promise<EventDetailsLoaderType> {
     const id = params.eventId;
-    const response = await fetch('http://localhost:8080/events/' + id);
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'No events found.'}), {status: 500}); // Fallback to errorElement
-    } else {
-        return response;
-    }
+    return {
+        fetchEvent: await getEventById(id)
+    };
 }
 
-export async function EventsDeleteAction({params, request}) {
+export async function EventsDeleteAction({params}) {
     const id = params.eventId;
-    const response = await fetch('http://localhost:8080/events/' + id, {
-        method: request.method,
-        headers: {'Authorization': 'Bearer ' + getAuthToken()},
-    });
-
-    if (!response.ok) {
-        throw new Response(JSON.stringify({message: 'Could not delete event.'}), {status: 500}); // Fallback to errorElement
-    }
+    const response = await deleteEventById(id);
     return redirect('/events');
 }
